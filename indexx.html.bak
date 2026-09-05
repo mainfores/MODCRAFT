@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Mods · Showcase</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background-image: url('file:///C:/Users/NITRO%20PC/Desktop/Моды/5749411.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      padding: 2rem 1.5rem;
+      color: #e8edf5;
+      position: relative;
+    }
+
+    /* затемнение */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 14, 18, 0.7);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1340px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      padding: 1.2rem 2rem;
+      background: rgba(13, 18, 23, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.4rem;
+      color: #8fdc8f;
+      text-shadow: 0 0 30px rgba(100, 200, 100, 0.2);
+    }
+
+    .logo i {
+      font-size: 1.8rem;
+      color: #7cb87c;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, #8fdc8f, #5a9e5a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a0c8a0;
+    }
+
+    .header-right i {
+      color: #8fdc8f;
+    }
+
+    .header-right .count {
+      background: rgba(100, 200, 100, 0.1);
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      color: #8fdc8f;
+      border: 1px solid rgba(100, 180, 100, 0.1);
+    }
+
+    /* ===== GRID ===== */
+    .mod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ===== CARD — только свечение, без движения ===== */
+    .mod-card {
+      background: rgba(16, 22, 28, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    /* свечение при наведении — без движения */
+    .mod-card:hover {
+      border-color: rgba(100, 200, 100, 0.25);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 30px rgba(100, 200, 100, 0.06), 0 0 60px rgba(100, 200, 100, 0.03);
+    }
+
+    /* preview */
+    .preview {
+      width: 100%;
+      height: 190px;
+      background: #0a0e12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .mod-card:hover .preview img {
+      transform: scale(1.03);
+    }
+
+    .preview .fallback {
+      font-size: 3rem;
+      color: #3a5a3a;
+    }
+
+    /* card body */
+    .card-body {
+      padding: 1.2rem 1.4rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .title-row h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #f0f7f0;
+    }
+
+    .title-row h3 i {
+      color: #8fdc8f;
+      font-size: 0.85rem;
+      margin-right: 0.3rem;
+    }
+
+    .version-tag {
+      background: rgba(100, 200, 100, 0.1);
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.55rem;
+      font-weight: 600;
+      color: #8fdc8f;
+      border: 1px solid rgba(100, 180, 100, 0.1);
+      font-family: 'Press Start 2P', monospace;
+      white-space: nowrap;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1rem;
+      font-size: 0.65rem;
+      color: #8aa88a;
+      margin: 0.4rem 0 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .meta i {
+      color: #8fdc8f;
+      width: 1rem;
+      font-size: 0.65rem;
+    }
+
+    .meta .badge-type {
+      background: rgba(100, 200, 100, 0.05);
+      padding: 0.1rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.5rem;
+      border: 1px solid rgba(100, 180, 100, 0.05);
+    }
+
+    .description {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #c8d8c8;
+      margin: 0.2rem 0 0.8rem;
+      flex: 1;
+    }
+
+    .description .hint {
+      display: block;
+      font-size: 0.6rem;
+      color: #6a8a6a;
+      margin-top: 0.3rem;
+    }
+
+    .description .hint i {
+      color: #8fdc8f;
+      margin-right: 0.3rem;
+    }
+
+    .file-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: #a0c0a0;
+      margin-bottom: 0.8rem;
+    }
+
+    .file-badge i {
+      color: #8fdc8f;
+    }
+
+    .file-badge .size {
+      margin-left: auto;
+      background: rgba(100, 200, 100, 0.06);
+      padding: 0.1rem 0.6rem;
+      border-radius: 20px;
+      color: #8fdc8f;
+      font-size: 0.55rem;
+      border: 1px solid rgba(100, 180, 100, 0.04);
+    }
+
+    .file-badge span:not(.size) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 130px;
+      white-space: nowrap;
+    }
+
+    /* ===== АНИМИРОВАННАЯ КНОПКА ===== */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      padding: 0.55rem 1.2rem;
+      background: linear-gradient(135deg, #1a3a1a, #2d5a2d);
+      border: 1px solid rgba(100, 200, 100, 0.15);
+      color: #8fdc8f;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 60px;
+      cursor: pointer;
+      width: 100%;
+      justify-content: center;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* анимация пульсации */
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #2d5a2d, #5a9e5a, #2d5a2d, #1a3a1a);
+      background-size: 300% 300%;
+      border-radius: 62px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: gradientMove 3s ease-in-out infinite;
+    }
+
+    .download-btn:hover::before {
+      opacity: 1;
+    }
+
+    .download-btn::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: linear-gradient(135deg, #1a3a1a, #2d5a2d);
+      border-radius: 58px;
+      z-index: -1;
+      transition: background 0.3s ease;
+    }
+
+    .download-btn:hover::after {
+      background: linear-gradient(135deg, #2d5a2d, #3d7a3d);
+    }
+
+    .download-btn:hover {
+      color: #a0eca0;
+      border-color: rgba(100, 200, 100, 0.3);
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(100, 200, 100, 0.15), 0 0 60px rgba(100, 200, 100, 0.05);
+    }
+
+    .download-btn:active {
+      transform: scale(0.97);
+    }
+
+    .download-btn i {
+      font-size: 0.8rem;
+      color: #8fdc8f;
+      transition: transform 0.3s ease;
+    }
+
+    .download-btn:hover i {
+      transform: translateY(-1px) scale(1.1);
+    }
+
+    .download-btn .file-type {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.1rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.45rem;
+      font-weight: 700;
+      border: 1px solid rgba(100, 180, 100, 0.06);
+      transition: background 0.3s ease;
+    }
+
+    .download-btn:hover .file-type {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* анимация градиента для обводки */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* дополнительная пульсация для кнопки */
+    .download-btn {
+      animation: subtlePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes subtlePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(100, 200, 100, 0); }
+      50% { box-shadow: 0 0 15px rgba(100, 200, 100, 0.04); }
+    }
+
+    .download-btn:hover {
+      animation: none;
+      box-shadow: 0 0 30px rgba(100, 200, 100, 0.15), 0 0 60px rgba(100, 200, 100, 0.05);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 3rem;
+      padding: 1.2rem 2rem;
+      background: rgba(13, 18, 23, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.65rem;
+      color: #6a8a6a;
+    }
+
+    .footer .badge-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer .badge-group span {
+      background: rgba(100, 180, 100, 0.04);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(100, 180, 100, 0.04);
+    }
+
+    .footer i {
+      color: #8fdc8f;
+      margin-right: 0.3rem;
+    }
+
+    .footer .highlight {
+      color: #8fdc8f;
+      font-weight: 500;
+    }
+
+    .image-hint {
+      margin-top: 1rem;
+      font-size: 0.5rem;
+      color: #4a6a4a;
+      text-align: center;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .image-hint i {
+      color: #6a8a6a;
+      margin-right: 0.2rem;
+    }
+
+    .image-hint span {
+      color: #7a9a7a;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem 1.2rem;
+        gap: 0.8rem;
+      }
+      .logo {
+        font-size: 1.1rem;
+        justify-content: center;
+      }
+      .header-right {
+        justify-content: center;
+        font-size: 0.65rem;
+        flex-wrap: wrap;
+      }
+      .mod-grid {
+        grid-template-columns: 1fr;
+      }
+      .preview {
+        height: 160px;
+      }
+      .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer .badge-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-cube"></i>
+        <span>MOD·CRAFT</span>
+      </div>
+      <div class="header-right">
+        <i class="fas fa-tag"></i> FORGE · OPTIFINE
+        <span class="count"><i class="fas fa-cubes"></i> 54</span>
+      </div>
+    </header>
+
+    <!-- MOD GRID -->
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="preview">
+          <img src="file:///C:/Users/NITRO%20PC/Desktop/Моды/Верити%20мод/63232-17822104048214-1920.webp"
+          alt="Verity"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-shield-halved\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-shield-halved" style="color:#8fdc8f"></i> Verity</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> ZIP</span>
+          </div>
+          <div class="description">
+            Dungeons · artifacts · enchantment rework
+            <span class="hint"><i class="fas fa-folder-open"></i> содержит несколько .jar файлов</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>verity-6.0.0-beta.9.zip</span>
+            <span class="size">250.6 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/Верити%20мод/verity-6.0.0-beta.9.zip" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.ZIP</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="file:///C:/Users/NITRO%20PC/Desktop/Моды/джени%20мод/1754237013_jennycraft-2.jpg"
+          alt="Jenny"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-heart\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-heart" style="color:#ff8a9e"></i> Jenny</h3>
+            <span class="version-tag">1.12.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + OptiFine</span>
+            <span><i class="fas fa-cube"></i> 1.12.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Companion AI · quests · interactions
+            <span class="hint"><i class="fas fa-file"></i> один .jar файл</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>Fapcraft.-.1.12.2.-.v.1.0.jar</span>
+            <span class="size">45.7 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/джени%20мод/Fapcraft.-.1.12.2.-.v.1.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="file:///C:/Users/NITRO%20PC/Desktop/Моды/лонг%20хеир%20хорс/1749193865_description_4e978059-a985-439f-a3b2-f9ebf29f2cd8.png"
+          alt="Long Horse"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-horse-head\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-horse-head" style="color:#c9a87c"></i> Long Horse</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> ZIP</span>
+          </div>
+          <div class="description">
+            Long-haired horse · animations · breeding
+            <span class="hint"><i class="fas fa-folder-open"></i> содержит несколько .jar файлов</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>LongHorse-injected.zip</span>
+            <span class="size">4.7 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/лонг%20хеир%20хорс/LongHorse-injected.zip" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.ZIP</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="file:///C:/Users/NITRO%20PC/Desktop/Моды/наруто/maxresdefault.jpg"
+          alt="Shinobi Era (Naruto)"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-fist-raised\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-fist-raised" style="color:#ffb347"></i> Shinobi Era (Naruto)</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> ZIP</span>
+          </div>
+          <div class="description">
+            Jutsus · chakra · custom weapons
+            <span class="hint"><i class="fas fa-folder-open"></i> содержит несколько .jar файлов</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>naruto_new_shinobi_era_1.20.1-1.6.0.injected.zip</span>
+            <span class="size">25.0 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/наруто/naruto_new_shinobi_era_1.20.1-1.6.0.injected.zip" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.ZIP</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="file:///C:/Users/NITRO%20PC/Desktop/Моды/Херобрин%20мод/6537d446d9a7c.png"
+          alt="Herobrine"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-ghost\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-ghost" style="color:#b0b8d1"></i> Herobrine</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Eerie events · structures · legends
+            <span class="hint"><i class="fas fa-file"></i> один .jar файл</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>fog-herobrine.jar</span>
+            <span class="size">8.0 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/Херобрин%20мод/fog-herobrine.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="file:///C:/Users/NITRO%20PC/Desktop/Моды/Damn%20Difficult%20Progression/2026-08-18_22.15.16.png"
+          alt="Damn Difficult Progression"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-dungeon\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-dungeon" style="color:#8fdc8f"></i> Damn Difficult Progression</h3>
+            <span class="version-tag">1.12.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.12.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> ZIP</span>
+          </div>
+          <div class="description">
+            Hardcore progression · brutal survival
+            <span class="hint"><i class="fas fa-folder-open"></i> содержит несколько .jar файлов</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>MCglTF-1.12.2-Forge-2.0.3.0.zip</span>
+            <span class="size">576.8 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/Damn%20Difficult%20Progression/MCglTF-1.12.2-Forge-2.0.3.0.zip" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.ZIP</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/xVY2l4TW/images/15d3b9d9e0a1730977c07732c0aed2c34b0c03bb_350.webp"
+          alt="Five Nights at Freddy's"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-robot\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-robot" style="color:#ff6b6b"></i> Five Nights at Freddy's</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> ZIP</span>
+          </div>
+          <div class="description">
+            Animatronics · horror · security
+            <span class="hint"><i class="fas fa-folder-open"></i> архив с модами</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>fnaf_mod-4-6-snapshot-1-1.20.1.injected.zip</span>
+            <span class="size">81.6 MB</span>
+          </div>
+          <a href="file:///C:/Users/NITRO%20PC/Desktop/Моды/фнаф/fnaf_mod-4-6-snapshot-1-1.20.1.injected.zip" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.ZIP</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/LNytGWDc/61d716699bcf1ec42ed4926a9e1c7311be6087e2_256.webp"
+          alt="Create"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-cogs\' style=\'color:#8fdc8f\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-cogs" style="color:#8fdc8f"></i> Create</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Gears, belts & full automation
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>create-1.20.1-6.0.8.jar</span>
+            <span class="size">19.2 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/LNytGWDc/versions/8amzvn9x/create-1.20.1-6.0.8.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/Ce6I4WUE/ea185eb1300a64867f89101d4798e71a54ef6bed_256.webp"
+          alt="Mekanism"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-industry\' style=\'color:#8fdc8f\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-industry" style="color:#8fdc8f"></i> Mekanism</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Machines, reactors, power
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>Mekanism-1.20.1-10.4.16.80.jar</span>
+            <span class="size">12.6 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/Ce6I4WUE/versions/uxe1WQp4/Mekanism-1.20.1-10.4.16.80.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/LVnvHVBp/images/2b55352d3184b39dbc6a488e0c052b28a6308891_350.webp"
+          alt="Ice & Fire"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-dragon\' style=\'color:#ff8f6b\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-dragon" style="color:#ff8f6b"></i> Ice & Fire</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Dragons & mythical creatures
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>iceandfire-2.1.13-1.20.1-beta-5.jar</span>
+            <span class="size">21.9 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/LVnvHVBp/versions/EzN8KQYF/iceandfire-2.1.13-1.20.1-beta-5.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/pfjLUfGv/e40d77bf0245907048fb71b5a64ec3de10099ef1_256.webp"
+          alt="Botania"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-leaf\' style=\'color:#9fe08a\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-leaf" style="color:#9fe08a"></i> Botania</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Botanical magic, flowers
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>Botania-1.20.1-455-FORGE.jar</span>
+            <span class="size">12.2 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/pfjLUfGv/versions/BpFDhV66/Botania-1.20.1-455-FORGE.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/TKB6INcv/7ccd369857b70b16e0fbd3f10e5278b0f75c7772_256.webp"
+          alt="Ars Nouveau"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-hat-wizard\' style=\'color:#b49df0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-hat-wizard" style="color:#b49df0"></i> Ars Nouveau</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Spellcraft, mana & glyphs
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>ars_nouveau-1.20.1-4.12.7-all.jar</span>
+            <span class="size">12.4 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/TKB6INcv/versions/Hw2aD01e/ars_nouveau-1.20.1-4.12.7-all.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/YhmgMVyu/images/6bcfa05c5228af0eaa3abb567cea8072720f2fc1_350.webp"
+          alt="The Aether"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-cloud-sun\' style=\'color:#aee4ff\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-cloud-sun" style="color:#aee4ff"></i> The Aether</h3>
+            <span class="version-tag">1.12.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.12.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Sky dimension & dungeons
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>aether-1.12.2-v1.5.4.1.jar</span>
+            <span class="size">14.7 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/YhmgMVyu/versions/y1tzlBx9/aether-1.12.2-v1.5.4.1.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/2cMuAZAp/images/0e8107d2528f683051477ac7359c943c8eae4c64_350.webp"
+          alt="Alex's Mobs"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-paw\' style=\'color:#d9b38f\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-paw" style="color:#d9b38f"></i> Alex's Mobs</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            70+ new creatures
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>alexsmobs-1.22.9.jar</span>
+            <span class="size">26.4 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/2cMuAZAp/versions/XoIASRVU/alexsmobs-1.22.9.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/BFbX9xcm/images/062ff3f4f31061329115e82db45d881a1fcb6d9b_350.webp"
+          alt="Mowzie's Mobs"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-dog\' style=\'color:#c9a87c\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-dog" style="color:#c9a87c"></i> Mowzie's Mobs</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Bosses & mythology
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>mowziesmobs-1.8.2.jar</span>
+            <span class="size">36.0 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/BFbX9xcm/versions/acYEfsJa/mowziesmobs-1.8.2.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/k23mNPhZ/images/e144fc02877a08a5b604948429d5e418ceab6f64.webp"
+          alt="Aquamirae"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-water\' style=\'color:#7cc8e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-water" style="color:#7cc8e8"></i> Aquamirae</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Underwater world & relics
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>aquamirae-forge-1.20.1-7.1.13.jar</span>
+            <span class="size">25.9 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/k23mNPhZ/versions/72GwOBcB/aquamirae-forge-1.20.1-7.1.13.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/jgzwYsAN/images/7249d913ef451a41ae965e6fca5a728626405ac9_350.webp"
+          alt="Malum"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-skull\' style=\'color:#d9a37a\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-skull" style="color:#d9a37a"></i> Malum</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Dark magic & spirits
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>malum-1.20.1-1.6.7.jar</span>
+            <span class="size">26.3 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/jgzwYsAN/versions/U88VbrNU/malum-1.20.1-1.6.7.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/IQSOHVhI/images/152f8dc0664c3062b9efc694e05fd58a4f181724_350.webp"
+          alt="Hexerei"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-broom\' style=\'color:#b7a5e0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-broom" style="color:#b7a5e0"></i> Hexerei</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Witchcraft & rituals
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>hexerei-0.4.2.3.jar</span>
+            <span class="size">11.4 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/IQSOHVhI/versions/z5SfvrzM/hexerei-0.4.2.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/sbJh4AZw/images/a0e237a422ae8c34ecf353ed35dfa0628ad19e46_350.webp"
+          alt="Occultism"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-wand-magic-sparkles\' style=\'color:#c9b8ff\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-wand-magic-sparkles" style="color:#c9b8ff"></i> Occultism</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Summoning & rituals
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>occultism-1.20.1-1.158.0.jar</span>
+            <span class="size">4.0 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/sbJh4AZw/versions/hs5pHmiU/occultism-1.20.1-1.158.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/3rc31Hgo/images/0e851ee0446887487f03af726f959302cc7459e3_350.webp"
+          alt="Spectrum"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-gem\' style=\'color:#8fe8d8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-gem" style="color:#8fe8d8"></i> Spectrum</h3>
+            <span class="version-tag">1.21.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.21.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Color magic & progression
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>spectrum-1.12.5-1.21.1-neo.jar</span>
+            <span class="size">91.2 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/3rc31Hgo/versions/cE3gyVDM/spectrum-1.12.5-1.21.1-neo.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/R2OftAxM/images/a5a80d8833b40a7cc5c2baa06ecc7960c819ac74_350.webp"
+          alt="Farmer's Delight"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-utensils\' style=\'color:#f0d28a\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-utensils" style="color:#f0d28a"></i> Farmer's Delight</h3>
+            <span class="version-tag">1.20</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Cooking & farming
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>FarmersDelight-1.20.1-1.3.4.jar</span>
+            <span class="size">3.3 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/R2OftAxM/versions/SiIpcZzM/FarmersDelight-1.20.1-1.3.4.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/fasdaXH5/images/a003a6495ec61161b34ca49d0a7b12d694662f3e_350.webp"
+          alt="Farmer's Respite"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-mug-hot\' style=\'color:#e0b078\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-mug-hot" style="color:#e0b078"></i> Farmer's Respite</h3>
+            <span class="version-tag">1.20</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Teas & drinks
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>farmersrespite-1.20.1-2.1.2.jar</span>
+            <span class="size">537 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/fasdaXH5/versions/kucmCxP0/farmersrespite-1.20.1-2.1.2.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/1DWmBJVA/images/759e68ec387ad53a1d9ac8d71b8b0e3d763655f5_350.webp"
+          alt="Let's Do: Vinery"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-wine-glass\' style=\'color:#e89aa4\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-wine-glass" style="color:#e89aa4"></i> Let's Do: Vinery</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Wine-making & grapes
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>letsdo-vinery-forge-1.4.41.jar</span>
+            <span class="size">2.0 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/1DWmBJVA/versions/2I4cH49O/letsdo-vinery-forge-1.4.41.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/fFEIiSDQ/images/26dfc0ec2722f13db149b716dfe8bf02a98c0037_350.webp"
+          alt="Supplementaries"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-lightbulb\' style=\'color:#f0e080\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-lightbulb" style="color:#f0e080"></i> Supplementaries</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Utility decoration
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>supplementaries-1.20-3.1.43-forge.jar</span>
+            <span class="size">13.7 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/fFEIiSDQ/versions/S0TIJ1hU/supplementaries-1.20-3.1.43-forge.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/t6BIRVZn/images/32f37b28ceee20854b8d0c7327ea860cd19f9d02_350.webp"
+          alt="Decorative Blocks"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-couch\' style=\'color:#a0c8a0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-couch" style="color:#a0c8a0"></i> Decorative Blocks</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Building & decoration
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>decorative_blocks-forge-1.20.1-4.1.3.jar</span>
+            <span class="size">574 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/t6BIRVZn/versions/nGmyeiug/decorative_blocks-forge-1.20.1-4.1.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/SaCpeal4/images/2c12c02f476fc986bb065a67fd118c1e3033d595_350.webp"
+          alt="Comforts"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-bed\' style=\'color:#a8b8e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-bed" style="color:#a8b8e8"></i> Comforts</h3>
+            <span class="version-tag">1.21.11</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.21.11</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Sleeping bags & hammocks
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>comforts-forge-14.0.2+1.21.11.jar</span>
+            <span class="size">454 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/SaCpeal4/versions/6841QyqX/comforts-forge-14.0.2%2B1.21.11.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/P3iIrPH3/images/36e679bf9bce2dd7c482aa9058a6c578df24f72b_350.webp"
+          alt="Iron Chests"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-box\' style=\'color:#c8c8c8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-box" style="color:#c8c8c8"></i> Iron Chests</h3>
+            <span class="version-tag">1.16.5</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.16.5</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Upgraded chests
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>ironchest-1.16.5-11.2.21.jar</span>
+            <span class="size">258 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/P3iIrPH3/versions/OtphB4On/ironchest-1.16.5-11.2.21.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/TyCTlI4b/e31c7e2f8769d317339e25b2a8d1b40fbf312729_256.webp"
+          alt="Sophisticated Backpacks"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-backpack\' style=\'color:#e0b878\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-backpack" style="color:#e0b878"></i> Sophisticated Backpacks</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Backpacks & upgrades
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>sophisticatedbackpacks-1.20.1-3.24.67.2109.jar</span>
+            <span class="size">1.2 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/TyCTlI4b/versions/as0tf712/sophisticatedbackpacks-1.20.1-3.24.67.2109.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/LOpKHB2A/images/2658f69c8c7a588698a1afa30c8dd80329096b4d_350.webp"
+          alt="Waystones"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-location-dot\' style=\'color:#8fe8b0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-location-dot" style="color:#8fe8b0"></i> Waystones</h3>
+            <span class="version-tag">1.21.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.21.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Teleportation points
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>waystones-forge-1.21.1-21.1.42.jar</span>
+            <span class="size">1.2 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/LOpKHB2A/versions/CciIsxpw/waystones-forge-1.21.1-21.1.42.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/YT5K34AB/images/06dc2d1b6f6c4087c1822e0f9e9a8ccd5d69c5e2.jpeg"
+          alt="Corail Tombstone"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-cross\' style=\'color:#b0b8d1\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-cross" style="color:#b0b8d1"></i> Corail Tombstone</h3>
+            <span class="version-tag">1.12.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.12.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Graves & soul teleport
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>tombstone-1.12.2-4.8.0.jar</span>
+            <span class="size">1.7 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/YT5K34AB/versions/zLwFOXYW/tombstone-1.12.2-4.8.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/qnQsVE2z/aef2119751d026421b9e9dc83d4470eec9f91a16_256.webp"
+          alt="Quark"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-feather\' style=\'color:#a8c8f0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-feather" style="color:#a8c8f0"></i> Quark</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Vanilla+ tweaks
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>Quark-4.0-462.jar</span>
+            <span class="size">14.9 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/qnQsVE2z/versions/DijQLauD/Quark-4.0-462.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/HXF82T3G/images/3a3f161bd6f9493124ae8528378e0b6efb152f98_350.webp"
+          alt="Biomes O' Plenty"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-mountain-sun\' style=\'color:#8fd08f\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-mountain-sun" style="color:#8fd08f"></i> Biomes O' Plenty</h3>
+            <span class="version-tag">26.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 26.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            New biomes & trees
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>BiomesOPlenty-forge-26.2-26.2.0.0.27.jar</span>
+            <span class="size">23.0 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/HXF82T3G/versions/E7z1CyMo/BiomesOPlenty-forge-26.2-26.2.0.0.27.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/NTi7d3Xc/images/3b49e42f0c518deb5d9c60bc543ec00132b697bd_350.webp"
+          alt="Oh The Biomes We've Gone"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-earth-europe\' style=\'color:#8fd8c0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-earth-europe" style="color:#8fd8c0"></i> Oh The Biomes We've Gone</h3>
+            <span class="version-tag">1.21.11</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.21.11</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Unique beautiful biomes
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>Oh-The-Biomes-Weve-Gone-Forge-4.4.0.jar</span>
+            <span class="size">20.6 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/NTi7d3Xc/versions/wQ3igSWA/Oh-The-Biomes-Weve-Gone-Forge-4.4.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/e0bNACJD/images/8de7a83024f1bacbb09df51ef2811efb4e57c788_350.webp"
+          alt="Serene Seasons"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-snowflake\' style=\'color:#a8d8f0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-snowflake" style="color:#a8d8f0"></i> Serene Seasons</h3>
+            <span class="version-tag">1.21.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.21.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Seasons & weather
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>SereneSeasons-forge-1.21.1-10.1.0.8.jar</span>
+            <span class="size">155 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/e0bNACJD/versions/9r9wXQkA/SereneSeasons-forge-1.21.1-10.1.0.8.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/BOCJKD49/images/e82a9ac0080130093b637ebcf6d754c684103eb0_350.webp"
+          alt="Friends & Foes"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-users\' style=\'color:#e8a880\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-users" style="color:#e8a880"></i> Friends & Foes</h3>
+            <span class="version-tag">1.20.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Mob-vote friends
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>friendsandfoes-forge-mc1.20.2-3.0.9.jar</span>
+            <span class="size">3.6 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/BOCJKD49/versions/KZGPFzu8/friendsandfoes-forge-mc1.20.2-3.0.9.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/3ufwT9JF/images/608c0354187296edf5d6008282302cf44568068a_350.webp"
+          alt="Ad Astra"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-rocket\' style=\'color:#8fa8e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-rocket" style="color:#8fa8e8"></i> Ad Astra</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Rockets & space travel
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>ad_astra-forge-1.20.1-1.15.20.jar</span>
+            <span class="size">7.5 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/3ufwT9JF/versions/Qf7QFXk2/ad_astra-forge-1.20.1-1.15.20.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/Fsvx2bdR/images/73b52d46093869ff2d19e414084ad943598fd4c6.gif"
+          alt="ParCool!"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-person-running\' style=\'color:#8fc4e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-person-running" style="color:#8fc4e8"></i> ParCool!</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Parkour mechanics
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>ParCool-1.20.1-4.0.0.3.jar</span>
+            <span class="size">1.1 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/Fsvx2bdR/versions/LDZtXIqM/ParCool-1.20.1-4.0.0.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/s4OWxYQQ/6a1f5c6adb434a6c56c1975af6f4fbde3ba907ff.png"
+          alt="Iron's Spells 'n Spellbooks"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-book\' style=\'color:#e8c88a\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-book" style="color:#e8c88a"></i> Iron's Spells 'n Spellbooks</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Magic & spellbooks
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>irons_spellbooks-1.20.1-3.16.3.jar</span>
+            <span class="size">15.6 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/s4OWxYQQ/versions/hZaEegS9/irons_spellbooks-1.20.1-3.16.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/1u6JkXh5/30698991048ced77e60c4e8284007d3782f2e6a3_256.webp"
+          alt="WorldEdit"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-pen-ruler\' style=\'color:#d8b878\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-pen-ruler" style="color:#d8b878"></i> WorldEdit</h3>
+            <span class="version-tag">1.20.4</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.4</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            In-game map editor
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>worldedit-mod-7.3.0.jar</span>
+            <span class="size">6.1 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/1u6JkXh5/versions/ZOhVauWn/worldedit-mod-7.3.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/u6dRKJwZ/images/3eeba45a5139933d338cb1b3d93ba341693f9ed8_350.webp"
+          alt="Just Enough Items (JEI)"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-boxes-stacked\' style=\'color:#f0d28a\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-boxes-stacked" style="color:#f0d28a"></i> Just Enough Items (JEI)</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Item & recipe viewer
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>jei-1.20.1-forge-15.57.0.207.jar</span>
+            <span class="size">1.8 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/u6dRKJwZ/versions/bJzkBYfT/jei-1.20.1-forge-15.57.0.207.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/lfHFW1mp/a1c571a21a88f6fa59eab67829f216f65ab393ee_256.webp"
+          alt="JourneyMap"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-map\' style=\'color:#8fe8c0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-map" style="color:#8fe8c0"></i> JourneyMap</h3>
+            <span class="version-tag">26.1.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 26.1.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Live map & waypoints
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>journeymap-forge-26.1.2-6.0.7.jar</span>
+            <span class="size">4.3 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/lfHFW1mp/versions/M7e8rAn6/journeymap-forge-26.1.2-6.0.7.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/1bokaNcj/354080f65407e49f486fcf9c4580e82c45ae63b8_256.webp"
+          alt="Xaero's Minimap"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-location-crosshairs\' style=\'color:#8fd8e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-location-crosshairs" style="color:#8fd8e8"></i> Xaero's Minimap</h3>
+            <span class="version-tag">26.1.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 26.1.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Minimap & waypoints
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>xaerominimap-forge-26.1.2-26.4.3.jar</span>
+            <span class="size">2.2 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/1bokaNcj/versions/JfOFsbci/xaerominimap-forge-26.1.2-26.4.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/NcUtCpym/354080f65407e49f486fcf9c4580e82c45ae63b8_256.webp"
+          alt="Xaero's World Map"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-earth-americas\' style=\'color:#8fc8e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-earth-americas" style="color:#8fc8e8"></i> Xaero's World Map</h3>
+            <span class="version-tag">26.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 26.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Fullscreen map
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>xaeroworldmap-forge-26.2-1.45.0.jar</span>
+            <span class="size">1.4 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/NcUtCpym/versions/uR4BXv9U/xaeroworldmap-forge-26.2-1.45.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/nvQzSEkH/images/0bf8da81675d890d2bccba0ed0f51a0fabef5267.png"
+          alt="Jade"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-magnifying-glass\' style=\'color:#a8e8a8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-magnifying-glass" style="color:#a8e8a8"></i> Jade</h3>
+            <span class="version-tag">1.20</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Block info tooltip
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>Jade-1.20.1-Forge-11.13.3.jar</span>
+            <span class="size">553 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/nvQzSEkH/versions/xJQHCmWJ/Jade-1.20.1-Forge-11.13.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/6AQIaxuO/2bd96dccf28d264598c2c5f5a46c1d57561841a2_256.webp"
+          alt="WTHIT"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-eye\' style=\'color:#c8b8f0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-eye" style="color:#c8b8f0"></i> WTHIT</h3>
+            <span class="version-tag">26.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 26.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            HUD block tooltips
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>wthit-26.2-forge-20.0.0.jar</span>
+            <span class="size">900 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/6AQIaxuO/versions/hLJuNMCk/wthit-26.2-forge-20.0.0.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/EsAfCjCV/icon.png"
+          alt="AppleSkin"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-apple-whole\' style=\'color:#e88a8a\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-apple-whole" style="color:#e88a8a"></i> AppleSkin</h3>
+            <span class="version-tag">1.20.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Hunger & saturation
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>appleskin-forge-mc1.20.2-2.5.1.jar</span>
+            <span class="size">53 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/EsAfCjCV/versions/pyRMqaEV/appleskin-forge-mc1.20.2-2.5.1.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/CnOG2wlS/96e00b18b5a80990af46c4c02c9ea9a36e61a61b_256.webp"
+          alt="Toast Control"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-bell-slash\' style=\'color:#e8a0a0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-bell-slash" style="color:#e8a0a0"></i> Toast Control</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Hide notification toasts
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>ToastControl-1.20.1-8.0.3.jar</span>
+            <span class="size">27 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/CnOG2wlS/versions/q8jNIVj8/ToastControl-1.20.1-8.0.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/NNAgCjsB/images/65781fbd7cda31b8c8e4a8def40bf445c10a1562.gif"
+          alt="Entity Culling"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-vector-square\' style=\'color:#a8d8d8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-vector-square" style="color:#a8d8d8"></i> Entity Culling</h3>
+            <span class="version-tag">1.21.8</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.21.8</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Culls hidden entities
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>entityculling-forge-1.10.5-mc1.21.8.jar</span>
+            <span class="size">1.6 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/NNAgCjsB/versions/3ziWPYIy/entityculling-forge-1.10.5-mc1.21.8.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/qyVF9oeo/798fbfae58ec95ad51f3e1d522b43227306c326c.png"
+          alt="Sound Physics Remastered"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-volume-high\' style=\'color:#8fc8f0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-volume-high" style="color:#8fc8f0"></i> Sound Physics Remastered</h3>
+            <span class="version-tag">26.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 26.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Realistic audio
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>sound-physics-remastered-forge-1.5.1+26.2.jar</span>
+            <span class="size">194 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/qyVF9oeo/versions/6Zba3CwE/sound-physics-remastered-forge-1.5.1%2B26.2.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/4ZqxOvjD/icon.png"
+          alt="Rubidium"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-bolt\' style=\'color:#f0e060\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-bolt" style="color:#f0e060"></i> Rubidium</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Sodium for Forge, more FPS
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>rubidium-mc1.20.1-0.7.1.jar</span>
+            <span class="size">705 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/4ZqxOvjD/versions/VKligEsm/rubidium-mc1.20.1-0.7.1.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/GchcoXML/09ef853cdfd3d467dead4faef37102535a2185d5_256.webp"
+          alt="Oculus"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-camera-retro\' style=\'color:#d8a0e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-camera-retro" style="color:#d8a0e8"></i> Oculus</h3>
+            <span class="version-tag">1.19.2</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.19.2</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Shaders for Forge
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>oculus-mc1.19.2-1.6.9a.jar</span>
+            <span class="size">3.5 MB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/GchcoXML/versions/Mw8aFpWF/oculus-mc1.19.2-1.6.9a.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/qa2H4BS9/6d050ec66ca82c61ece51cb2cad2782c193bfb79_256.webp"
+          alt="Canary"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-gauge-high\' style=\'color:#6fd0a0\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-gauge-high" style="color:#6fd0a0"></i> Canary</h3>
+            <span class="version-tag">1.20.4</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.4</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Lithium for Forge, more TPS
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>canary-mc1.20.4-0.3.3.jar</span>
+            <span class="size">594 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/qa2H4BS9/versions/UdeICuou/canary-mc1.20.4-0.3.3.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/uXXizFIs/222a126f26f8f9ae1eb339f3b767677f18bff31f_256.webp"
+          alt="FerriteCore"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-memory\' style=\'color:#90a8e8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-memory" style="color:#90a8e8"></i> FerriteCore</h3>
+            <span class="version-tag">1.20</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge + NeoForge</span>
+            <span><i class="fas fa-cube"></i> 1.20</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Less RAM usage
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>ferritecore-6.0.1-forge.jar</span>
+            <span class="size">123 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/uXXizFIs/versions/DG5Fn9Sz/ferritecore-6.0.1-forge.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="preview">
+          <img src="https://cdn.modrinth.com/data/roccmqou/af9b4dce576c03f5c9337938b49a468f89a826c8_256.webp"
+          alt="FastSuite"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fa-forward-fast\' style=\'color:#b0e0a8\'></i></div>'" />
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <h3><i class="fas fa-forward-fast" style="color:#b0e0a8"></i> FastSuite</h3>
+            <span class="version-tag">1.20.1</span>
+          </div>
+          <div class="meta">
+            <span><i class="fas fa-code-branch"></i> Forge</span>
+            <span><i class="fas fa-cube"></i> 1.20.1</span>
+            <span class="badge-type"><i class="fas fa-archive"></i> JAR</span>
+          </div>
+          <div class="description">
+            Faster startup & blockstates
+            <span class="hint"><i class="fas fa-cloud-arrow-down"></i> Modrinth CDN</span>
+          </div>
+          <div class="file-badge">
+            <i class="fas fa-file-zipper"></i>
+            <span>FastSuite-1.20.1-5.1.2.jar</span>
+            <span class="size">27 KB</span>
+          </div>
+          <a href="https://cdn.modrinth.com/data/roccmqou/versions/nhk4VpGm/FastSuite-1.20.1-5.1.2.jar" class="download-btn" download>
+            <i class="fas fa-download"></i> Download
+            <span class="file-type">.JAR</span>
+          </a>
+        </div>
+      </div>
+      </div>
+
+<!-- FOOTER -->
+    <footer class="footer">
+      <div class="badge-group">
+        <span><i class="fas fa-check-circle"></i> tested</span>
+        <span><i class="fas fa-cube"></i> 1.12.2 · 1.20.1+ · NeoForge</span>
+        <span class="highlight"><i class="fas fa-cubes"></i> 54 mods</span>
+      </div>
+      <div>
+        <i class="fas fa-folder-open"></i> <span style="color:#7a9a7a;">/Моды</span>
+      </div>
+    </footer>
+
+                <div class="image-hint">
+      <i class="fas fa-image"></i> previews:
+      <span>7 локальных файлов</span> ·
+      <span>47 картинок · Modrinth CDN</span>
+      <br /><i class="fas fa-info-circle"></i>
+      <span style="color:#5a7a5a;">нажмите DOWNLOAD чтобы скачать файл</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
