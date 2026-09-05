@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOD·CRAFT — карты Minecraft</title>
+  <script>
+    (function () {
+      history.scrollRestoration = 'manual';
+      var savedY = Number(sessionStorage.getItem('mc_scroll_last')) || 0;
+      var html = document.documentElement;
+      var restored = false;
+      function restoreScroll() {
+        var maxY = html.scrollHeight - window.innerHeight;
+        var y = Math.min(savedY, Math.max(maxY, 0));
+        var prev = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, y);
+        html.style.scrollBehavior = prev;
+      }
+      function restoreAndShow() {
+        if (restored) return;
+        restored = true;
+        restoreScroll();
+        html.classList.remove('resuming');
+      }
+      if (savedY > 0) {
+        html.classList.add('resuming');
+        document.addEventListener('DOMContentLoaded', restoreAndShow);
+        window.addEventListener('load', restoreAndShow);
+        setTimeout(restoreAndShow, 400);
+      }
+      window.addEventListener('beforeunload', function () {
+        sessionStorage.setItem('mc_scroll_last', String(window.scrollY));
+      });
+      window.addEventListener('scroll', function () {
+        sessionStorage.setItem('mc_scroll_last', String(window.scrollY));
+      }, { passive: true });
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="logo"><i class="fas fa-cube"></i></span>
+        <span class="brand-name">MOD·CRAFT</span>
+      </a>
+      <p class="brand-sub">Моды, карты и ресурспаки для Minecraft</p>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="container nav-inner">
+      <a href="index.html">Моды</a>
+      <a href="maps.html" class="active">Карты</a>
+      <a href="packs.html">Ресурспаки</a>
+      <span class="nav-count">12 карт</span>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="toolbar">
+      <div class="search-field">
+        <i class="fas fa-magnifying-glass"></i>
+        <input id="q" type="text" placeholder="Поиск карты по названию…" autocomplete="off" />
+      </div>
+      <select id="fVersion" class="select" aria-label="Версия">
+        <option value="">Все версии</option>
+      </select>
+      <button id="reset" class="btn-ghost">Сбросить</button>
+    </div>
+
+    <div class="toolbar-status">Показано <b id="shown">12</b> из <b>12</b></div>
+
+    <div class="mod-grid" id="grid">
+    <article class="mod-card" data-name="the dropper" data-loader="map" data-version="1.20">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1243/409277170852dropper3728139_3978416_thumb.jpg" alt="The Dropper"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-arrow-down-wide-short\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-arrow-down-wide-short" style="color:#2fbf71"></i>The Dropper</h3>
+          <span class="version-tag">1.20</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Drop · Паркур</span>
+          <span><i class="fas fa-cube"></i>1.12.2+</span>
+        </div>
+        <p class="desc">Падай с высоты и проходи уровни-головоломки: вода, лава и точное приземление <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/advpuzz-the-dropper-2-new-levels/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="bed wars" data-loader="map" data-version="1.13">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1916/working-bed-wars-1555432690_thumb.jpg" alt="Bed Wars"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-bullseye\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-bullseye" style="color:#2fbf71"></i>Bed Wars (vanilla)</h3>
+          <span class="version-tag">1.13</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Мини-игра</span>
+          <span><i class="fas fa-cube"></i>1.13.2</span>
+        </div>
+        <p class="desc">Полноценный BedWars без модов: только карта на командных блоках <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/fully-working-vanilla-bed-wars-no-mods/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="skywars desert" data-loader="map" data-version="1.8">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1539/desertthumbnail9428954_thumb.jpg" alt="SkyWars — The Unresting Desert"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-crown\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-crown" style="color:#2fbf71"></i>SkyWars — Unresting Desert</h3>
+          <span class="version-tag">1.8</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Мини-игра</span>
+          <span><i class="fas fa-cube"></i>1.8</span>
+        </div>
+        <p class="desc">12 островов, 4 больших острова и центр — классический SkyWars в пустынном стиле <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/free-download-skywars-map-the-unresting-desert/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="lucky block" data-loader="map" data-version="1.7">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1537/impoltant00999373840_thumb.jpg" alt="Minecraft Trolling Lucky Block Race"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-dice\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-dice" style="color:#2fbf71"></i>Lucky Block Race</h3>
+          <span class="version-tag">1.7</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Лаки-блок гонка</span>
+          <span><i class="fas fa-cube"></i>1.7.10</span>
+        </div>
+        <p class="desc">Гонка с радужными лаки-блоками для компании: кто первым найдёт путь к финишу <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/minecraft-trolling-lucky-block-race/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="dftz parkour" data-loader="map" data-version="1.8">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1929/image-1563751290_thumb.jpg" alt="DFTZ (Parkour Map)"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-bolt\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-bolt" style="color:#2fbf71"></i>DFTZ — Parkour Map</h3>
+          <span class="version-tag">1.8</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Паркур</span>
+          <span><i class="fas fa-cube"></i>1.8</span>
+        </div>
+        <p class="desc">4 тематические зоны: от ледяных пиков до огненных равнин <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/dftz-parkour-map/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="floating world parkour" data-loader="map" data-version="1.8">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1530/2015-07-22_1102169179383_thumb.jpg" alt="Floating World — Parkour"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-cloud\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-cloud" style="color:#2fbf71"></i>Floating World</h3>
+          <span class="version-tag">1.8</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Паркур</span>
+          <span><i class="fas fa-cube"></i>1.8</span>
+        </div>
+        <p class="desc">Паркур по парящим островам с живописными видами <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/floating-world---parkour/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="tnt run colosseum" data-loader="map" data-version="1.8">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1510/2014-09-08_0212208712122_thumb.jpg" alt="TnTrun — Fire Drakes Colosseum"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-fire\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-fire" style="color:#2fbf71"></i>TnTrun — Colosseum</h3>
+          <span class="version-tag">1.7–1.8</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Мини-игра</span>
+          <span><i class="fas fa-cube"></i>1.7.10</span>
+        </div>
+        <p class="desc">TNT Run на арене-колизее: пол уходит из-под ног, успей перепрыгнуть <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/fire-drakes-colosseum-tntrun-arena-improved/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="tnt run frost" data-loader="map" data-version="1.8">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1510/2014-11-23_2246128700967_thumb.jpg" alt="TnTrun — Frost Giants Cave"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-snowflake\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-snowflake" style="color:#2fbf71"></i>TnTrun — Frost Cave</h3>
+          <span class="version-tag">1.7–1.8</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Мини-игра</span>
+          <span><i class="fas fa-cube"></i>1.7.10</span>
+        </div>
+        <p class="desc">TNT Run в ледяной пещере великанов с многоярусными платформами <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/tntrun-frost-giants-cave/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="helios one" data-loader="map" data-version="1.7">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1236/2012-09-03_194017_3505154_thumb.jpg" alt="Helios One"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-compass\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-compass" style="color:#2fbf71"></i>Helios One</h3>
+          <span class="version-tag">1.7</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Приключение</span>
+          <span><i class="fas fa-cube"></i>1.7.x</span>
+        </div>
+        <p class="desc">Заброшенный остров с руинами электростанции: изучи тайны империи <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/helios-one---an-uujicraft-adventure-island/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="h2o crash landing" data-loader="map" data-version="1.10">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1637/2016-07-04_07512810535760_thumb.jpg" alt="H2O: Crash Landing"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-water\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-water" style="color:#2fbf71"></i>H2O: Crash Landing</h3>
+          <span class="version-tag">1.10</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Выживание</span>
+          <span><i class="fas fa-cube"></i>1.10</span>
+        </div>
+        <p class="desc">Потерпи крушение на океанической планете и устрой базу в выживании <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/h2o-crash-landing-survival/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="survival island 2017" data-loader="map" data-version="1.12">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1734/image-1503750453_thumb.jpg" alt="Survival Island 2017"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-island-tropical\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-island-tropical" style="color:#2fbf71"></i>Survival Island 2017</h3>
+          <span class="version-tag">1.12</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Выживание</span>
+          <span><i class="fas fa-cube"></i>1.12</span>
+        </div>
+        <p class="desc">Обживи тропический остров с вулканом, пещерами и пиратским кораблём <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/survival-island-2017-alpha-v-1/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="dream town" data-loader="map" data-version="1.3">
+      <div class="preview">
+        <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1244/dajmond_4006784_thumb.jpg" alt="Dream Town Chronicles"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-city\'></i></div>'"/>
+        <span class="chip">WORLD</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-city" style="color:#2fbf71"></i>Dream Town Chronicles</h3>
+          <span class="version-tag">1.3.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-gamepad"></i>Приключение</span>
+          <span><i class="fas fa-cube"></i>1.3.2</span>
+        </div>
+        <p class="desc">Город мечты: строй и обустраивай свой уголок в мире-приключении <span class="hint"><i class="fas fa-globe"></i>planetminecraft.com</span></p>
+        <div class="file-line">
+          <i class="fas fa-globe"></i>
+          <span class="fname">страница карты на PlanetMinecraft</span>
+          <span class="fsize">PMC</span>
+        </div>
+        <a href="https://www.planetminecraft.com/project/dream-town-croniclesadventure-map-132/" class="btn" target="_blank">
+          <i class="fas fa-download"></i>Скачать карту<span class="ext">PMC</span>
+        </a>
+      </div>
+    </article>
+    </div>
+
+    <div class="empty hidden" id="empty">
+      <i class="fas fa-box-open"></i>
+      <p>По запросу ничего не найдено.<br />Попробуйте изменить фильтры.</p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="f-col">
+        <div class="f-brand"><span class="logo"><i class="fas fa-cube"></i></span> MOD·CRAFT</div>
+        <p class="f-about">Каталог модов, карт и ресурспаков для Minecraft. Скачивание напрямую, без ожидания и рекламы.</p>
+      </div>
+      <div class="f-col">
+        <h4>Разделы</h4>
+        <a href="index.html">Моды</a>
+        <a href="maps.html">Карты</a>
+        <a href="packs.html">Ресурспаки</a>
+      </div>
+      <div class="f-col">
+        <h4>Совместимость</h4>
+        <span class="f-tag"><i class="fas fa-code-branch"></i>Forge · NeoForge</span>
+        <span class="f-tag"><i class="fas fa-cube"></i>1.12.2 — 1.21+</span>
+        <span class="f-tag"><i class="fas fa-shield-halved"></i>Оптимизация включена</span>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 MOD·CRAFT · Minecraft is a trademark of Mojang Studios</span>
+      <span>Картинки и файлы — с официальных страниц модов</span>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Наверх"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    var grid = document.getElementById('grid');
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.mod-card'));
+    var q = document.getElementById('q');
+    var fVersion = document.getElementById('fVersion');
+    var shownEl = document.getElementById('shown');
+    var emptyEl = document.getElementById('empty');
+
+    function versionCompare(a, b) {
+      var pa = a.split('.').map(Number), pb = b.split('.').map(Number);
+      var l = Math.max(pa.length, pb.length);
+      for (var i = 0; i < l; i++) {
+        var x = pa[i] || 0, y = pb[i] || 0;
+        if (x !== y) return x - y;
+      }
+      return 0;
+    }
+
+    var versions = [];
+    cards.forEach(function (c) {
+      var v = c.getAttribute('data-version');
+      if (versions.indexOf(v) === -1) versions.push(v);
+    });
+    versions.sort(versionCompare).reverse();
+    versions.forEach(function (v) {
+      var o = document.createElement('option');
+      o.value = v;
+      o.textContent = v;
+      fVersion.appendChild(o);
+    });
+
+    function applyFilters() {
+      var query = q.value.trim().toLowerCase();
+      var vf = fVersion.value;
+      var count = 0;
+      cards.forEach(function (c) {
+        var ok =
+          (query === '' || c.getAttribute('data-name').indexOf(query) !== -1) &&
+          (vf === '' || c.getAttribute('data-version') === vf);
+        c.classList.toggle('hidden', !ok);
+        c.classList.remove('appear');
+        if (ok) {
+          count++;
+          requestAnimationFrame(function () { c.classList.add('appear'); });
+        }
+      });
+      shownEl.textContent = count;
+      emptyEl.classList.toggle('hidden', count > 0);
+    }
+
+    q.addEventListener('input', applyFilters);
+    fVersion.addEventListener('change', applyFilters);
+    document.getElementById('reset').addEventListener('click', function () {
+      q.value = ''; fVersion.value = '';
+      applyFilters();
+    });
+
+    applyFilters();
+
+    var toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 480) toTop.classList.add('show'); else toTop.classList.remove('show');
+    }, { passive: true });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

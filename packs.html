@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOD·CRAFT — ресурспаки Minecraft</title>
+  <script>
+    (function () {
+      history.scrollRestoration = 'manual';
+      var savedY = Number(sessionStorage.getItem('mc_scroll_last')) || 0;
+      var html = document.documentElement;
+      var restored = false;
+      function restoreScroll() {
+        var maxY = html.scrollHeight - window.innerHeight;
+        var y = Math.min(savedY, Math.max(maxY, 0));
+        var prev = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, y);
+        html.style.scrollBehavior = prev;
+      }
+      function restoreAndShow() {
+        if (restored) return;
+        restored = true;
+        restoreScroll();
+        html.classList.remove('resuming');
+      }
+      if (savedY > 0) {
+        html.classList.add('resuming');
+        document.addEventListener('DOMContentLoaded', restoreAndShow);
+        window.addEventListener('load', restoreAndShow);
+        setTimeout(restoreAndShow, 400);
+      }
+      window.addEventListener('beforeunload', function () {
+        sessionStorage.setItem('mc_scroll_last', String(window.scrollY));
+      });
+      window.addEventListener('scroll', function () {
+        sessionStorage.setItem('mc_scroll_last', String(window.scrollY));
+      }, { passive: true });
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="logo"><i class="fas fa-cube"></i></span>
+        <span class="brand-name">MOD·CRAFT</span>
+      </a>
+      <p class="brand-sub">Моды, карты и ресурспаки для Minecraft</p>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="container nav-inner">
+      <a href="index.html">Моды</a>
+      <a href="maps.html">Карты</a>
+      <a href="packs.html" class="active">Ресурспаки</a>
+      <span class="nav-count">22 пака</span>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="toolbar">
+      <div class="search-field">
+        <i class="fas fa-magnifying-glass"></i>
+        <input id="q" type="text" placeholder="Поиск ресурспака по названию…" autocomplete="off" />
+      </div>
+      <select id="fVersion" class="select" aria-label="Версия">
+        <option value="">Все версии</option>
+      </select>
+      <button id="reset" class="btn-ghost">Сбросить</button>
+    </div>
+
+    <div class="toolbar-status">Показано <b id="shown">22</b> из <b>22</b></div>
+
+    <div class="mod-grid" id="grid">
+    <article class="mod-card" data-name="fresh animations" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/50dA9Sha/3132c10e9e3c73fde9799720fd3da5561071708c_96.webp" alt="Fresh Animations"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-paw\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-paw" style="color:#2fbf71"></i>Fresh Animations</h3>
+          <span class="version-tag">26.1–26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Анимации мобов</span>
+        </div>
+        <p class="desc">Полностью анимированные мобы: бег, прыжки, взмахи — мир оживает <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.10.5 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">FreshAnimations_v1.10.5.zip</span>
+          <span class="fsize">0.6 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/50dA9Sha/versions/RGIzA5em/FreshAnimations_v1.10.5.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="faithful 32" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/w0TnApzs/e8403d1fb2f55321ae74402c1e8c90a3a5670856.png" alt="Faithful 32x"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-gem\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-gem" style="color:#2fbf71"></i>Faithful 32x</h3>
+          <span class="version-tag">26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>32x HD</span>
+        </div>
+        <p class="desc">Та же классическая атмосфера, но вдвое больше деталей в текстурах <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет 26.2-june-2026 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Faithful 32x - 26.2.zip</span>
+          <span class="fsize">10.0 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/w0TnApzs/versions/jtTqgLTy/Faithful%2032x%20-%2026.2.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="faithful 64" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/r4GILswZ/9ff7d3c66d6a263c158c2ef034b0361fdfbf354b.png" alt="Faithful 64x"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-gem\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-gem" style="color:#2fbf71"></i>Faithful 64x</h3>
+          <span class="version-tag">26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>64x HD</span>
+        </div>
+        <p class="desc">Максимальная детализация в классическом стиле — для мощных сборок <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет Release 14 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Faithful 64x - Release 14.zip</span>
+          <span class="fsize">14.6 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/r4GILswZ/versions/AOqbBNcY/Faithful%2064x%20-%20Release%2014.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="bare bones" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/rox3U8B6/b502bd8b2a6048f635230da8e8a66eeb4383874b_96.webp" alt="Bare Bones"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-cubes\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-cubes" style="color:#2fbf71"></i>Bare Bones</h3>
+          <span class="version-tag">1.21–1.21.11</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Минимализм</span>
+        </div>
+        <p class="desc">Чистые текстуры без лишнего шума — яркий красочный минимализм <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.4.12 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Bare Bones 1.21.11.zip</span>
+          <span class="fsize">5.2 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/rox3U8B6/versions/jQBWn2Q3/Bare%20Bones%201.21.11.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="fresh moves" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/slufHzC2/02b78db6655ad8dd6cfd847f99c76f7552c053ec_96.webp" alt="Fresh Moves"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-person-walking\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-person-walking" style="color:#2fbf71"></i>Fresh Moves</h3>
+          <span class="version-tag">1.21.3–1.21.4</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Анимации игрока</span>
+        </div>
+        <p class="desc">Плавный бег, полёт, плавание и новые позы для игрока от автора Fresh Animations <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 3.1.1 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">+1.21.3 Fresh Moves v3.1.1.zip</span>
+          <span class="fsize">267 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/slufHzC2/versions/BX6pU42f/%2B1.21.3%20Fresh%20Moves%20v3.1.1%20%28With%20Animated%20Eyes%29.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="dramatic skys" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/2YyNMled/75af81c8e31ad9b2848bff6fc40c9d7232f3c3b0_96.webp" alt="Dramatic Skys"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-cloud-sun\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-cloud-sun" style="color:#2fbf71"></i>Dramatic Skys</h3>
+          <span class="version-tag">1.8 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Эпичные небеса</span>
+        </div>
+        <p class="desc">Закаты, звёзды, бури и облака — кинематографичное небо для любых версий <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет 1.5.3.36.5 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Dramatic Skys Demo 1.5.3.36.5.zip</span>
+          <span class="fsize">13.3 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/2YyNMled/versions/obHItVKX/Dramatic%20Skys%20Demo%201.5.3.36.5.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="modern mizuno" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/9dHuFRY9/eb129b5cd30c43eaf4f9a8e3a02861b424bb4aaa.gif" alt="Modern Mizuno's"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-leaf\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-leaf" style="color:#2fbf71"></i>Modern Mizuno's</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Атмосфера</span>
+        </div>
+        <p class="desc">Мягкие спокойные текстуры и чистая цветовая палитра для уютного выживания <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 0.5.2 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Modern Mizunos v0.5.2.zip</span>
+          <span class="fsize">485 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/9dHuFRY9/versions/eejBs3Zq/Modern%20Mizunos%20v0.5.2.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="fresh animations extensions" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/YAVTU8mK/2e83da75469cdec6d4558023cba611443b105c9e_96.webp" alt="Fresh Animations: Extensions"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-wand-magic-sparkles\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-wand-magic-sparkles" style="color:#2fbf71"></i>Fresh Animations: Extensions</h3>
+          <span class="version-tag">26.1–26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Дополнение</span>
+        </div>
+        <p class="desc">Дополнения для Fresh Animations: эмоции мобов, инвентарь, звуки и блоки <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.9.2 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">FA+All_Extensions-v1.9.2.zip</span>
+          <span class="fsize">372 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/YAVTU8mK/versions/R5ZGSF8A/FA%2BAll_Extensions-v1.9.2.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="default hd 128" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/orfTV6nk/6fdf978987749000f98743f1dcdab09929985a8b_96.webp" alt="Default HD 128x"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-gem\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-gem" style="color:#2fbf71"></i>Default HD 128x</h3>
+          <span class="version-tag">1.8 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>128x HD</span>
+        </div>
+        <p class="desc">Оригинальные текстуры Minecraft в разрешении 128x — максимум чёткости <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.8.2.6 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Default HD 128x Demo 1.8.2.6.zip</span>
+          <span class="fsize">16.1 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/orfTV6nk/versions/RjVfks9j/Default%20HD%20128x%20Demo%201.8.2.6.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="better leaves" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/uvpymuxq/fe1a61998ae57dc6ad1a4bb028334c3c3925d22f_96.webp" alt="Motschen's Better Leaves"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-seedling\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-seedling" style="color:#2fbf71"></i>Better Leaves</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Листва</span>
+        </div>
+        <p class="desc">Аккуратные новые модели листвы: дубы, берёзы и тропические кроны <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 9.5 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Better-Leaves-9.5.zip</span>
+          <span class="fsize">1.8 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/uvpymuxq/versions/XWtayRKd/Better-Leaves-9.5.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="default dark mode" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/6SLU7tS5/f90001e4ebed860e7ae913f34c85d745f516a89b.png" alt="Default Dark Mode"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-moon\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-moon" style="color:#2fbf71"></i>Default Dark Mode</h3>
+          <span class="version-tag">26.1–26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Тёмный GUI</span>
+        </div>
+        <p class="desc">Тёмный интерфейс и инвентарь в референсном стиле — комфортно в игре ночью <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет 2026.6.0 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Default-Dark-Mode-26.2-2026.6.0.zip</span>
+          <span class="fsize">743 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/6SLU7tS5/versions/tPC8gaIQ/Default-Dark-Mode-26.2-2026.6.0.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="new glowing ores" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/oL18adaQ/2bb2608c4f8c4801cbbdd3c60673b3c2228c5027.png" alt="New Glowing Ores"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-sparkles\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-sparkles" style="color:#2fbf71"></i>New Glowing Ores</h3>
+          <span class="version-tag">1.21 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Светящаяся руда</span>
+        </div>
+        <p class="desc">Руды и целые жилы мягко светятся в темноте — жилы видно издалека <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 2.0 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">NewGlowingOres (border).zip</span>
+          <span class="fsize">337 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/oL18adaQ/versions/BG46xXmQ/NewGlowingOres-%C2%A76%5BBorder%5D%C2%A7r.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="fast better grass" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/dspVZXKP/5de0774f423d220fcd4e635b91f2bdfcb8a2b910.png" alt="Fast Better Grass"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-mountain-sun\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-mountain-sun" style="color:#2fbf71"></i>Fast Better Grass</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Трава</span>
+        </div>
+        <p class="desc">Трава сверху блоков без задержки по FPS — оптимизация без потери вида <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет 26.2 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Fast Better Grass.zip</span>
+          <span class="fsize">11 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/dspVZXKP/versions/U9zNcnWW/Fast%20Better%20Grass.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="low on fire" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/RRxvWKNC/06a7e7691a6da41798c255108a8563d7ffea171d.png" alt="Low On Fire"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-fire-flame-curved\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-fire-flame-curved" style="color:#2fbf71"></i>Low On Fire</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Огонь</span>
+        </div>
+        <p class="desc">Пламя ниже и компактнее — лучше видно происходящее и нет слепящих языков <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет 26.2 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">LowOnFire v26.2.zip</span>
+          <span class="fsize">41 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/RRxvWKNC/versions/yQdcUfnr/LowOnFire%20v26.2%C2%A78.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="fancy crops" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/UGEVQ6t9/5c1e966b2b67c21750875d8517c994d975a729de_96.webp" alt="(Bee's) Fancy Crops"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-carrot\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-carrot" style="color:#2fbf71"></i>Fancy Crops</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Ферма</span>
+        </div>
+        <p class="desc">Культуры и овощи выглядят как настоящие — морковь, картошка и пшеница <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.3 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Fancy Crops v1.3.zip</span>
+          <span class="fsize">90 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/UGEVQ6t9/versions/ZJEBZjg6/Fancy%20Crops%20v1.3.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="simple grass flowers" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/ti9KkMHm/3d335c25a18ca44c7c2dd449eab25a7de82016eb.gif" alt="Simple Grass Flowers"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-butterfly\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-butterfly" style="color:#2fbf71"></i>Simple Grass Flowers</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Цветы</span>
+        </div>
+        <p class="desc">На траве появляются цветы без новых блоков — просто и красиво <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 2.0.0 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Simple Grass Flowers v2.0.0.zip</span>
+          <span class="fsize">204 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/ti9KkMHm/versions/Cd4Xa7Sr/Simple%20Grass%20Flowers%20v2.0.0.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="programmer art fix" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/d1nRD7RG/73267422faa3188aed5be6c4445015157fc765a4_96.webp" alt="Programmer Art Fix"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-file-code\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-file-code" style="color:#2fbf71"></i>Programmer Art Fix</h3>
+          <span class="version-tag">26.1–26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Классика</span>
+        </div>
+        <p class="desc">Достраивает старые текстуры до новых блоков — референсный стиль без пропусков <span class="hint"><i class="fas fa-cloud-arrow-down"></i> пакет 26.2 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">ProgrammerArtFix-26.2.zip</span>
+          <span class="fsize">845 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/d1nRD7RG/versions/nMUU9xyH/ProgrammerArtFix-26.2.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="enchantment outlines" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/A32gwfe8/9f4bd3edfdb3df167c64757f66b828eba664a616_96.webp" alt="Enchantment Outlines"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-hat-wizard\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-hat-wizard" style="color:#2fbf71"></i>Enchantment Outlines</h3>
+          <span class="version-tag">1.20 – 26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Зачарования</span>
+        </div>
+        <p class="desc">Зачарованные предметы подсвечены контуром — сразу видно инструменты в сундуке <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.10.8 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Enchantment Outlines.zip</span>
+          <span class="fsize">1.1 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/A32gwfe8/versions/JtnHjGTs/Enchantment%20Outlines.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="enhanced boss bars" data-loader="pack" data-version="26.2">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/U5SedJ9S/3097d03d95849c868725896a671a983914f3fad8.png" alt="Enhanced Boss Bars"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-bars-progress\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-bars-progress" style="color:#2fbf71"></i>Enhanced Boss Bars</h3>
+          <span class="version-tag">26.1–26.2</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Боссы</span>
+        </div>
+        <p class="desc">Новые полоски здоровья боссов: дракон, визер и варден выглядят эффектнее <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.6 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">[1.6] Enhanced Boss Bars.zip</span>
+          <span class="fsize">120 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/U5SedJ9S/versions/EcgWW9Yi/%5B1.6%5D%20Enhanced%20Boss%20Bars.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="cubic sun moon" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/g4bSYbrU/30e1c67a699f5b334f8814f78e34d168fb173862_96.webp" alt="Cubic Sun & Moon"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-sun\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-sun" style="color:#2fbf71"></i>Cubic Sun &amp; Moon</h3>
+          <span class="version-tag">1.8 – 1.21</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Атмосфера</span>
+        </div>
+        <p class="desc">Кубическое солнце и луна, как на классических постерах Minecraft <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 1.8.5 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">cubic-sun-moon-v1.8.5.zip</span>
+          <span class="fsize">15.4 MB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/g4bSYbrU/versions/zHa4qeKn/cubic-sun-moon-v1.8.5.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="detailed animations" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/9pR04wDX/3c3ea330cdf4abc7e23b6354d26eb1c2a48bd9d6_96.webp" alt="Detailed Animations"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-rotate\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-rotate" style="color:#2fbf71"></i>Detailed Animations</h3>
+          <span class="version-tag">1.21 – 26.1</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Анимации</span>
+        </div>
+        <p class="desc">Детальные анимации блоков и предметов: двери, рычаги, инструменты <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия пакета 0.19 · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">DetailedAnimationsV0.19.zip</span>
+          <span class="fsize">49 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/9pR04wDX/versions/p5NVi4Nv/DetailedAnimationsV0.19.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    <article class="mod-card" data-name="colorful grasses" data-loader="pack" data-version="1.21">
+      <div class="preview">
+        <img src="https://cdn.modrinth.com/data/O2zhH8n8/a502bfe9117c4f2b14dfdb8ee6f0e265375fbabf_96.webp" alt="Os' Colorful Grasses"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'fallback\'><i class=\'fas fa-tree\'></i></div>'"/>
+        <span class="chip">PACK</span>
+      </div>
+      <div class="card-body">
+        <div class="title-row">
+          <h3><i class="fas fa-tree" style="color:#2fbf71"></i>Os' Colorful Grasses</h3>
+          <span class="version-tag">1.21</span>
+        </div>
+        <div class="meta">
+          <span><i class="fas fa-code-branch"></i>Ресурспак</span>
+          <span><i class="fas fa-cube"></i>Трава</span>
+        </div>
+        <p class="desc">Яркая разноцветная трава по биомам — пышная и короткая версия <span class="hint"><i class="fas fa-cloud-arrow-down"></i> версия Short+Fluffy · Modrinth CDN</span></p>
+        <div class="file-line">
+          <i class="fas fa-file-zipper"></i>
+          <span class="fname">Os' Colorful Grasses (Short and Fluffy).zip</span>
+          <span class="fsize">181 KB</span>
+        </div>
+        <a href="https://cdn.modrinth.com/data/O2zhH8n8/versions/6y5oHV7t/Os%27%20Colorful%20Grasses%20%28Short%20and%20Fluffy%29.zip" class="btn" download>
+          <i class="fas fa-download"></i>Скачать<span class="ext">.ZIP</span>
+        </a>
+      </div>
+    </article>
+    </div>
+
+    <div class="empty hidden" id="empty">
+      <i class="fas fa-box-open"></i>
+      <p>По запросу ничего не найдено.<br />Попробуйте изменить фильтры.</p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="f-col">
+        <div class="f-brand"><span class="logo"><i class="fas fa-cube"></i></span> MOD·CRAFT</div>
+        <p class="f-about">Каталог модов, карт и ресурспаков для Minecraft. Скачивание напрямую, без ожидания и рекламы.</p>
+      </div>
+      <div class="f-col">
+        <h4>Разделы</h4>
+        <a href="index.html">Моды</a>
+        <a href="maps.html">Карты</a>
+        <a href="packs.html">Ресурспаки</a>
+      </div>
+      <div class="f-col">
+        <h4>Совместимость</h4>
+        <span class="f-tag"><i class="fas fa-code-branch"></i>Forge · NeoForge</span>
+        <span class="f-tag"><i class="fas fa-cube"></i>1.12.2 — 1.21+</span>
+        <span class="f-tag"><i class="fas fa-shield-halved"></i>Оптимизация включена</span>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 MOD·CRAFT · Minecraft is a trademark of Mojang Studios</span>
+      <span>Картинки и файлы — с официальных страниц модов</span>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Наверх"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    var grid = document.getElementById('grid');
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.mod-card'));
+    var q = document.getElementById('q');
+    var fVersion = document.getElementById('fVersion');
+    var shownEl = document.getElementById('shown');
+    var emptyEl = document.getElementById('empty');
+
+    function versionCompare(a, b) {
+      var pa = a.split('.').map(Number), pb = b.split('.').map(Number);
+      var l = Math.max(pa.length, pb.length);
+      for (var i = 0; i < l; i++) {
+        var x = pa[i] || 0, y = pb[i] || 0;
+        if (x !== y) return x - y;
+      }
+      return 0;
+    }
+
+    var versions = [];
+    cards.forEach(function (c) {
+      var v = c.getAttribute('data-version');
+      if (versions.indexOf(v) === -1) versions.push(v);
+    });
+    versions.sort(versionCompare).reverse();
+    versions.forEach(function (v) {
+      var o = document.createElement('option');
+      o.value = v;
+      o.textContent = v;
+      fVersion.appendChild(o);
+    });
+
+    function applyFilters() {
+      var query = q.value.trim().toLowerCase();
+      var vf = fVersion.value;
+      var count = 0;
+      cards.forEach(function (c) {
+        var ok =
+          (query === '' || c.getAttribute('data-name').indexOf(query) !== -1) &&
+          (vf === '' || c.getAttribute('data-version') === vf);
+        c.classList.toggle('hidden', !ok);
+        c.classList.remove('appear');
+        if (ok) {
+          count++;
+          requestAnimationFrame(function () { c.classList.add('appear'); });
+        }
+      });
+      shownEl.textContent = count;
+      emptyEl.classList.toggle('hidden', count > 0);
+    }
+
+    q.addEventListener('input', applyFilters);
+    fVersion.addEventListener('change', applyFilters);
+    document.getElementById('reset').addEventListener('click', function () {
+      q.value = ''; fVersion.value = '';
+      applyFilters();
+    });
+
+    applyFilters();
+
+    var toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 480) toTop.classList.add('show'); else toTop.classList.remove('show');
+    }, { passive: true });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
